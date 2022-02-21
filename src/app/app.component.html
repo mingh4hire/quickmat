@@ -1,0 +1,55 @@
+<button (click)="clickit()">clickit</button>
+
+<button (click)="step = 1;">clickit</button>
+<input [(ngModel)]="step" />
+{{active}} is active
+{{step}} is step
+<ul ngbNav #nav="ngbNav" [(activeId)]="step" class="nav-tabs">
+
+  <ng-container *ngFor="let navItem of probs; let j = index;">
+    <li class="" [ngbNavItem]="j+1" [disabled]="j != 0 && probs[j].num1 * probs[j].num2 !== ans[j]">
+      <a ngbNavLink>adsf j is {{j}}</a>
+      <ng-template ngbNavContent>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 offset-md-4">
+              {{probs[j].num1}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 offset-md-4">
+              {{probs[j].num2}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 offset-md-4">
+              <input #guess input (input)="proceedLogic(probs[j].num1, probs[j].num2, ans[j])" type="number"
+                [(ngModel)]="ans[j]" />
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-4 offset-md-4">
+              <button class="btn btn-primary" (click)="step=step+1"
+                [disabled]="probs[j].num1 * probs[j].num2 !== +ans[j]">next</button>
+
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+    </li>
+  </ng-container>
+</ul>
+
+<div [ngbNavOutlet]="nav">
+
+</div>
+<button class="btn btn-primary">adsf jasdl;fjasld;jf</button>
+
+
+
+
+<button class="btn btn-primary">adsf jasdl;fjasld;jf</button>
